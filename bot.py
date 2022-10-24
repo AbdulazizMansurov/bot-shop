@@ -4,13 +4,16 @@ BOTNI ISHGA TUSHIRISH
 from middlewares import SimpleMiddleware
 from data.loader import bot, db
 from parser import OpenShopParser
-
 import handlers
+
+db.create_users_table()
+
+
 
 def create_tables(database, pars_oop):
     database.create_table_categories()
     database.create_table_products()
-    database.create_users_table()
+
 
     database.insert_categories('phones')
     database.insert_categories('tv')
@@ -34,5 +37,5 @@ bot.setup_middleware(SimpleMiddleware(0.5)) # bu botga qayta qayta yozmaslik uch
 
 if __name__ == '__main__':
     # bot.polling(none_stop=True)
-    create_tables(db, OpenShopParser)
+#     create_tables(db, OpenShopParser)
     bot.infinity_polling()
